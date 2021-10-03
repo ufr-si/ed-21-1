@@ -25,6 +25,8 @@ int soma_nrrr(int n){
     return soma;
 }
 
+"%s;%s;%s;%s;"
+
 int soma_nrr(int i,int n){
     printf("entrou na funcao, valores: i =%d, n = %d \n\n",i,n);
     int soma =0;
