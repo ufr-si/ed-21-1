@@ -85,7 +85,7 @@ int pop(){
 
 // ENTRADA: valor n 
 // SAIDA: uma fila com o valor n adicionado 
-void enfileira(n){
+void enfileira(int n){
     if(fila_vazia() ==1){
      // primeira e ultima == -1 
      ultimo =0; 
@@ -127,7 +127,7 @@ printf("primeiro: %d ultimo: %d \n",primeiro,ultimo);
 }
 
 
-void enfila(n){
+void enfila(int n){
 
     // puder adicionar (fila nao está cheia)
     if((primeiro == ultimo+1) || (primeiro == 0 && ultimo+1 == TAM)){
@@ -223,17 +223,15 @@ int main(void) {
     enfila(60);
     mostra_primeiro_ultimo();
     enfila(60);
-    mostra_primeiro_ultimo();
-    
+    mostra_primeiro_ultimo();    
     
     lista_fila(); 
 
     a = desfila();
-    printf("elemento removido: %d\n",a);
+   printf("elemento removido: %d\n",a);
     mostra_primeiro_ultimo();
 
     lista_fila();
 
-    
     return 0;
 }
