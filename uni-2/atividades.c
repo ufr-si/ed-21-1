@@ -13,8 +13,6 @@ int ultimo = -1;
 // FILA 
 
 
-
-
 int fila_vazia (){
     if (primeiro == -1 && ultimo == -1){
         return 1;
