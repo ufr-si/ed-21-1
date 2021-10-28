@@ -4,7 +4,7 @@
 typedef struct reg{ //criando um nó/item da minha lista
     int conteudo; // conteudo!
     struct reg *prox;  // ponteiro para o próximo elemento (que eu quiser)
-    struct reg *ant;
+   // struct reg *ant;
 }no;
 
 no *lista;
@@ -12,8 +12,8 @@ no *lista;
 no *fim_fila;
 no *fim_lista;
 
-void adiciona(int n){
-    // criar um no
+void adiciona(int n){ // pilha
+    // criar um PONTEIRO PARA no
     no *novo;
 
     novo = malloc(sizeof(no)); // memory allocation = alocacao de memoria
@@ -62,10 +62,11 @@ void add_fila_while(int n){
     novo->conteudo = n;
     novo->prox = NULL;
 
-    no *aux;
+    
     if(lista == NULL){// significa que eu nao tenho elementos na lista.
         lista = novo;
     }else{
+        no *aux;
         //prcurar qual o endereço do último elemento nessa FILA
         aux = lista; // estou tentando passar NULL! 
          while(aux->prox != NULL){// o ultimo elemento tem ->prox == NULL
