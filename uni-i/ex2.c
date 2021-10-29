@@ -8,16 +8,17 @@
 
 int soma_n(int n){
     int soma = 0;
-    for (int i=1;i<=n;i++){
-        printf("%d + ",i);
+    for (int i=1;i<=n;i++){ // 
+        printf("%d + ",i); // 
         soma = soma + i; 
     }
     return soma; 
 }
 
-int soma_nrrr(int n){
+
+int soma_nrrr(int n){ // fim 
     int soma;
-    if(n==1){
+    if(n==1){ // inicio
         return 1;
     }else{
         soma = n + soma_nrrr(n-1);
@@ -25,26 +26,25 @@ int soma_nrrr(int n){
     return soma;
 }
 
-"%s;%s;%s;%s;"
 
-int soma_nrr(int i,int n){
-    printf("entrou na funcao, valores: i =%d, n = %d \n\n",i,n);
+
+// n == 5 
+int lista[100];
+
+void soma_recursivo(int i,int n){ //1 ,5 
     int soma =0;
-    
-    if(i==n){
-        printf("BASE! n=%d\n",n);
-        return n;
+    if(i==n){ // base da recursaox
+       // return n; //
     }else{
-        int passo_recursivo = soma_nrr(i+1,n);
-        printf("Vou somar agora i =%d com %d \n ",i,passo_recursivo);
-        soma = i + passo_recursivo;
+        printf("%d",lista[i]); 
+        soma_recursivo(i+1,n); // 4, 5
+       // soma = 3 + 9; //12 
     }
-    
-    return soma;
+    // return soma; //12 
 }
 
-int soma_nr(int n){
-    return soma_nrr(1,n);
+int soma_nr(int n){ // 
+    soma_recursivo(0,n); // n = 5
 }
 
 
