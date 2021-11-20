@@ -7,8 +7,14 @@ int lista[130000];
 
 
 // ordenacao por insercao (insertion sort)
+void insertion_sort(int lista[],int tamanho_lista){
+
+}
 
 // ordenacao por selecao (selection sort)
+void selection_sort(int lista[],int tamanho_lista){
+    
+}
 
 // ordenacao por  "bolha" (bubble sort
 void bubble_sort(int lista[],int tamanho_lista){
