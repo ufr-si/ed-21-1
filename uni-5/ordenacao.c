@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 // entrada
 // LISTA (vetor) com numeros , possivelmente desordenados
 int lista[130000];
@@ -15,12 +16,20 @@ void insertion_sort(int lista[],int tamanho_lista){
     // pega o primeiro elemento da lista antiga, e coloca na nova.
     nova_lista[0] = lista[0]; // pega o conteúdo de nova_lista[1] e colocando em lista[1]
     tamanho_lista_nova = 1;
+
     // percorrer a lista antiga do segundo ate o ultimo elemento 
     for(int indice_antiga = 1; indice_antiga< tamanho_lista; indice_antiga++){
         
-        // pega o elemento atual da lista antiga e coloca na lista nova , na última posicao.
+        // pega o elemento atual da lista antiga e coloca na lista nova , na última posicao. 
+        tamanho_lista_nova++;
         nova_lista[tamanho_lista_nova-1] = lista[indice_antiga];
-        tamanho_lista_nova++; 
+        printf("nova_lista: %d\n", nova_lista[tamanho_lista_nova-1]);
+        
+        printf("tamanho_lista_nova: %d\n",tamanho_lista_nova);
+        for (int i = 0 ; i<tamanho_lista_nova;i++){
+                       printf("%d,",nova_lista[i]);
+                    }
+                    printf("\n");
         // percorre da penultima posicao da lista nova até o começo da lista nova, e compara.
         for(int indice_nova = tamanho_lista_nova-2;indice_nova>=0;indice_nova--){
                // se o elemento que eu acabei de inserir for menor, eu troco.
@@ -30,13 +39,22 @@ void insertion_sort(int lista[],int tamanho_lista){
                    int aux = nova_lista[indice_nova];
                    nova_lista[indice_nova] = nova_lista[indice_nova+1];
                    nova_lista[indice_nova+1] = aux;
+
+                   for (int i = 0 ; i<tamanho_lista_nova;i++){
+                       printf("%d,",nova_lista[i]);
+                    }
+                    printf("\n");
+
                } else{
                    break;
                }
         }
     }
-
-    
+printf("Tamanho Lista nova: %d\n", tamanho_lista_nova);
+ printf("Lista ordenada:\n");
+    for (int i = 0 ; i<tamanho_lista_nova;i++){
+        printf("%d,",nova_lista[i]);
+    }
 
 }
 
@@ -94,10 +112,18 @@ void bubble_sort(int lista[],int tamanho_lista){
 
 
 // divisao e conquista
+int merge_sort(int lista[],int inicio,int fim){
 
-void merge_sort(int lista[],int inicio,int fim){
+    if(fim > inicio){
+           // meio 
+        int meio = floor(inicio+fim)/2; 
 
+        merge_sort(lista,inicio,meio);
+        merge_sort(lista,meio+1,fim);
+        
+        merge(lista,inicio,meio,fim);
 
+    }
 }
 
 void quick_sort(int lista[]){
@@ -114,17 +140,19 @@ int main(void){
         lista[i] = (int) rand()/100000000;
         //lista[i] = i;
       //  valor--;
-        printf("Numero %d \n",lista[i]);
+       // printf("Numero %d \n",lista[i]);
     }
   
    clock_t t;
    t = clock();
    // bubble sort 
-     bubble_sort(lista,tamanho_lista);
+    // bubble_sort(lista,tamanho_lista);
+    //insertion_sort(lista,tamanho_lista);
+    merge_sort(lista,0,tamanho_lista-1);
    
    t = clock() - t;
    double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
-   printf("O programa levou %f segundos para rodar", time_taken);
+   printf("\nO programa levou %f segundos para rodar", time_taken);
 
    
  
