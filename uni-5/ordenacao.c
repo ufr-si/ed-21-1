@@ -25,7 +25,7 @@ void insertion_sort(int lista[],int tamanho_lista){
         nova_lista[tamanho_lista_nova-1] = lista[indice_antiga];
         printf("nova_lista: %d\n", nova_lista[tamanho_lista_nova-1]);
         
-        printf("tamanho_lista_nova: %d\n",tamanho_listaa_nova);
+        printf("tamanho_lista_nova: %d\n",tamanho_lista_nova);
         for (int i = 0 ; i<tamanho_lista_nova;i++){
                        printf("%d,",nova_lista[i]);
                     }
@@ -101,8 +101,6 @@ void bubble_sort(int lista[],int tamanho_lista){
         }
         // tamanho_lista--;
     
-        
-
     }while(fez_troca == 1);
     
     // FEZ_TROCA == 0 
