@@ -69,12 +69,6 @@ void bubble_sort(int lista[],int tamanho_lista){
 // ex: 5,4,3,2,1 4
 //     4,3,2,1,5 3 ... 2.... 1
      
-    //percorrer tudo até que eu nao precise mais fazer trocas
-    printf("Lista desordenada:\n");
-    for (int i = 0 ; i<tamanho_lista;i++){
-        printf("%d\n",lista[i]);
-    }
-
     int fez_troca; //FLAG (GERALMENTE BOOLEANO)
     do{
         fez_troca = 0; 
@@ -91,11 +85,11 @@ void bubble_sort(int lista[],int tamanho_lista){
                 lista[i+1] = aux;
                 fez_troca = 1; // FLAG LEVANTADA
 
-                printf("Passo:\n");
-                for (int i = 0 ; i<tamanho_lista;i++){
-                    printf("%d,",lista[i]);
-                }
-                printf("\n");
+                // ///printf("Passo:\n");
+                // for (int i = 0 ; i<tamanho_lista;i++){
+                //    // printf("%d,",lista[i]);
+                // }
+                // //printf("\n");
             }
 
         }
@@ -103,17 +97,13 @@ void bubble_sort(int lista[],int tamanho_lista){
     
     }while(fez_troca == 1);
     
-    // FEZ_TROCA == 0 
-    // SINAL QUE FOI ORDENADA A LISTA! 
     
-    printf("Lista ordenada:\n");
-    for (int i = 0 ; i<tamanho_lista;i++){
-        printf("%d,",lista[i]);
-    }
-
 }
 
 void merge (int lista[],int inicio,int meio,int fim){
+ //printf("conquista");
+ //print da (sublista) que vai de inicio até fim
+
     int indice1 = inicio; // até o meio
     int indice2 = meio+1; // fim
 
@@ -148,7 +138,7 @@ void merge (int lista[],int inicio,int meio,int fim){
 
 // divisao e conquista
 int merge_sort(int lista[],int inicio,int fim){
-    /// lista == [0][1] 
+    //printf("divisao");
 
     if(fim > inicio){
            // meio 
@@ -164,17 +154,18 @@ int merge_sort(int lista[],int inicio,int fim){
 }
 
 int main(void){
-    int tamanho_lista = 10;
+    int tamanho_lista = 128000;
     int valor = tamanho_lista;
 
+    printf("Lista desordenada: ");
     for (int i =0;i<tamanho_lista;i++){
         //loop para gerar numeros aleatorios.
-        lista[i] = (int) rand()/100000000;
+        lista[i] = (int) rand()/1000;
         //lista[i] = i;
-      //  valor--;
-       // printf("Numero %d \n",lista[i]);
+        // valor--;
+        //printf(" %d,",lista[i]);
     }
-  
+    printf("\n");
    clock_t t;
    t = clock();
    // bubble sort 
@@ -184,11 +175,13 @@ int main(void){
    
    t = clock() - t;
    double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
-   printf("\nO programa levou %f segundos para rodar", time_taken);
-
    
- 
- 
+   printf("Lista ordenada: ");
+   for (int i= 0;i<tamanho_lista/100;i++){
+       printf("%d,",lista[i]);
+   }
+
+   printf("\n\nO programa levou %f segundos para rodar", time_taken);
     
     return 0; 
 }
