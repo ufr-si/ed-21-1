@@ -9,7 +9,7 @@ int lista[130000];
 
 // ordenacao por insercao (insertion sort)
 void insertion_sort(int lista[],int tamanho_lista){
- 
+
     // criar uma nova lista 
     int nova_lista[130000];
     int tamanho_lista_nova = 0;
@@ -25,7 +25,7 @@ void insertion_sort(int lista[],int tamanho_lista){
         nova_lista[tamanho_lista_nova-1] = lista[indice_antiga];
         printf("nova_lista: %d\n", nova_lista[tamanho_lista_nova-1]);
         
-        printf("tamanho_lista_nova: %d\n",tamanho_lista_nova);
+        printf("tamanho_lista_nova: %d\n",tamanho_listaa_nova);
         for (int i = 0 ; i<tamanho_lista_nova;i++){
                        printf("%d,",nova_lista[i]);
                     }
@@ -65,7 +65,10 @@ void selection_sort(int lista[],int tamanho_lista){
 
 // ordenacao por  "bolha" (bubble sort
 void bubble_sort(int lista[],int tamanho_lista){
-    
+/// PIOR CASO: lista inversamente ordenada
+// ex: 5,4,3,2,1 4
+//     4,3,2,1,5 3 ... 2.... 1
+     
     //percorrer tudo até que eu nao precise mais fazer trocas
     printf("Lista desordenada:\n");
     for (int i = 0 ; i<tamanho_lista;i++){
@@ -75,6 +78,8 @@ void bubble_sort(int lista[],int tamanho_lista){
     int fez_troca; //FLAG (GERALMENTE BOOLEANO)
     do{
         fez_troca = 0; 
+
+        // n-1 vezes.
         for (int i = 0;i<tamanho_lista-1;i++){
             // se preciso fazer troca entre lista[i] e lista[i+1]
             //ex:  3 , 2  (lista[i] > lista[i+1])!
@@ -110,26 +115,55 @@ void bubble_sort(int lista[],int tamanho_lista){
 
 }
 
+void merge (int lista[],int inicio,int meio,int fim){
+    int indice1 = inicio; // até o meio
+    int indice2 = meio+1; // fim
 
-// divisao e conquista
-int merge_sort(int lista[],int inicio,int fim){
+    int tamanho_l3 = fim-inicio+1;
+    int l3[tamanho_l3];
 
-    if(fim > inicio){
-           // meio 
-        int meio = floor(inicio+fim)/2; 
-
-        merge_sort(lista,inicio,meio);
-        merge_sort(lista,meio+1,fim);
-        
-        merge(lista,inicio,meio,fim);
-
+    for(int i = 0;i<tamanho_l3;i++){
+        if(indice1 <= meio && indice2 <=fim){
+            if(lista[indice1] > lista[indice2]){
+                l3[i] = lista[indice2];             
+                indice2++;
+            }else{ // lista[indice1] <=  lista[indice2] (menor ou igual ) 
+                l3[i] = lista[indice1];
+                indice1++;
+            }
+        }else{
+            //quem chegou no fim da lista? 
+            if(indice2 > fim){
+                //l2 "esgotou"
+                l3[i]=lista[indice1];
+            }else{
+                l3[i] = lista[indice2];
+            }
+        }
+    }
+    int i = 0;
+    for(int j = inicio;j<=fim;j++){
+        lista[j] = l3[i];
+        i++;
     }
 }
 
-void quick_sort(int lista[]){
+// divisao e conquista
+int merge_sort(int lista[],int inicio,int fim){
+    /// lista == [0][1] 
 
+    if(fim > inicio){
+           // meio 
+        int meio = floor(inicio+fim)/2; // (0 + 1) / 2 = 0,5 => 0 
+
+        merge_sort(lista,inicio,meio); 
+        merge_sort(lista,meio+1,fim);
+        
+        // inicio = 0, meio =  0, fim = 1 
+        //merge(lista,0,0,1);
+        merge(lista,inicio,meio,fim);
+    }
 }
-
 
 int main(void){
     int tamanho_lista = 10;
